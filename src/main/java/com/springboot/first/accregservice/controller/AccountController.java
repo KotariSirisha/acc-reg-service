@@ -26,6 +26,11 @@ public class AccountController {
         return accountService.getAllAccounts();
     }
 
+    @GetMapping("/accounts/{name}")
+    public List<Account> accountsByName(@PathVariable("name") String name) {
+        return accountService.findAllAccountsByName(name);
+    }
+
     @PostMapping("/accounts")
     public ResponseEntity<Account> createAccount(@RequestBody AccountDto accountDto) {
         try {
