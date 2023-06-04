@@ -24,6 +24,10 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
+    public List<Account> findAllAccountsByName(String name) {
+        return accountRepository.findByNameContaining(name);
+    }
+
 
     public Account saveAccount(final AccountDto accountDto) {
         Account account = new Account(generateAccountNumber());
@@ -33,7 +37,7 @@ public class AccountService {
         account.setName(accountDto.getName());
         account.setIsactivated(false);
         Account account1 = accountRepository.save(account);
-        logger.info("Account created successfully => {}", account.getId());
+        logger.debug("Account created successfully => {}", account.getId());
         return account1;
     }
 
